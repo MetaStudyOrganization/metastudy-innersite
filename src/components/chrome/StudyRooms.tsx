@@ -4,9 +4,9 @@ import meNow from '../../assets/pictures/currentme.jpg';
 import { Link } from 'react-router-dom';
 import ResumeDownload from './ResumeDownload';
 
-export interface AboutProps {}
+export interface StudyRoomsProps {}
 
-const About: React.FC<AboutProps> = (props) => {
+const StudyRooms: React.FC<StudyRoomsProps> = (props) => {
     return (
         // add on resize listener
         <div className="site-page-content">
@@ -185,4 +185,4 @@ const styles: StyleSheetCSS = {
     },
 };
 
-export default About;
+export default StudyRooms;

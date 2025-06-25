@@ -11,6 +11,8 @@ import DesktopShortcut, { DesktopShortcutProps } from './DesktopShortcut';
 import Scrabble from '../applications/Scrabble';
 import { IconName } from '../../assets/icons';
 import Credits from '../applications/Credits';
+import axios from 'axios';
+import Notepad from '../applications/Notepad';
 
 export interface DesktopProps {}
 
@@ -35,6 +37,12 @@ const APPLICATIONS: {
         name: 'The Oregon Trail',
         shortcutIcon: 'trailIcon',
         component: OregonTrail,
+    },
+    notepad: {
+        key: 'notepad',
+        name: 'Notepad',
+        shortcutIcon: 'notepad',
+        component: Notepad,
     },
     doom: {
         key: 'doom',

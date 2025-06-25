@@ -1,9 +1,8 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from '../chrome/Home';
-import About from '../chrome/About';
 import Window from '../os/Window';
-import Experience from '../chrome/Experience';
+import MyStudyrooms from '../chrome/MyStudyrooms';
 import Projects from '../chrome/Projects';
 import Contact from '../chrome/Contact';
 import SoftwareProjects from '../chrome/projects/Software';
@@ -11,6 +10,7 @@ import MusicProjects from '../chrome/projects/Music';
 import ArtProjects from '../chrome/projects/Art';
 import VerticalNavbar from '../chrome/VerticalNavbar';
 import useInitialWindowSize from '../../hooks/useInitialWindowSize';
+import StudyRooms from '../chrome/StudyRooms';
 
 export interface ShowcaseExplorerProps extends WindowAppProps {}
 
@@ -35,8 +35,11 @@ const ShowcaseExplorer: React.FC<ShowcaseExplorerProps> = (props) => {
                     <VerticalNavbar />
                     <Routes>
                         <Route path="/" element={<Home />} />
-                        <Route path="/about" element={<About />} />
-                        <Route path="/experience" element={<Experience />} />
+                        <Route path="/studyrooms" element={<StudyRooms />} />
+                        <Route
+                            path="/mystudyrooms"
+                            element={<MyStudyrooms />}
+                        />
                         <Route path="/projects" element={<Projects />} />
                         <Route path="/contact" element={<Contact />} />
                         <Route

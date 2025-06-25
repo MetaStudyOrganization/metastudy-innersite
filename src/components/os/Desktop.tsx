@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import Colors from '../../constants/colors';
-import ShowcaseExplorer from '../applications/ShowcaseExplorer';
+import MetaStudy from '../applications/MetaStudy';
 import Doom from '../applications/Doom';
 import OregonTrail from '../applications/OregonTrail';
 import ShutdownSequence from './ShutdownSequence';
@@ -24,17 +24,11 @@ const APPLICATIONS: {
         component: React.FC<ExtendedWindowAppProps<any>>;
     };
 } = {
-    // computer: {
-    //     key: 'computer',
-    //     name: 'This Computer',
-    //     shortcutIcon: 'computerBig',
-    //     component: ThisComputer,
-    // },
-    showcase: {
-        key: 'showcase',
-        name: 'My Showcase',
-        shortcutIcon: 'showcaseIcon',
-        component: ShowcaseExplorer,
+    chrome: {
+        key: 'chrome',
+        name: 'Chrome',
+        shortcutIcon: 'chrome',
+        component: MetaStudy,
     },
     trail: {
         key: 'trail',
@@ -105,7 +99,7 @@ const Desktop: React.FC<DesktopProps> = (props) => {
         });
 
         newShortcuts.forEach((shortcut) => {
-            if (shortcut.shortcutName === 'My Showcase') {
+            if (shortcut.shortcutName === 'Chrome') {
                 shortcut.onOpen();
             }
         });

@@ -28,7 +28,7 @@ const Notepad: React.FC<CreditsProps> = (props) => {
             closeWindow={props.onClose}
             onInteract={props.onInteract}
             minimizeWindow={props.onMinimize}
-            bottomLeftText="© 2022 Henry Heffernan"
+            bottomLeftText="© 2025 MetaStudy"
         >
             <div style={styles.container}>
                 <div style={styles.menuBar}>

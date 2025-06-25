@@ -11,10 +11,12 @@
         "@types/node": "^16.11.26",
         "@types/react": "^17.0.40",
         "@types/react-dom": "^17.0.13",
+        "autoprefixer": "^10.4.21",
         "axios": "^1.10.0",
         "emulators-ui": "^0.73.1",
         "framer-motion": "^6.2.9",
         "js-dos": "^7.3.9",
+        "postcss": "^8.5.6",
         "react": "^17.0.2",
         "react-dom": "^17.0.2",
         "react-hook-form": "^7.58.1",
@@ -50,5 +52,8 @@
             "last 1 firefox version",
             "last 1 safari version"
         ]
+    },
+    "devDependencies": {
+        "@tailwindcss/postcss": "^4.1.10"
     }
 }

@@ -1,7 +1,6 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import Colors from '../../constants/colors';
 import MetaStudy from '../applications/MetaStudy';
-import Doom from '../applications/Doom';
 import OregonTrail from '../applications/OregonTrail';
 import ShutdownSequence from './ShutdownSequence';
 // import ThisComputer from '../applications/ThisComputer';
@@ -11,8 +10,8 @@ import DesktopShortcut, { DesktopShortcutProps } from './DesktopShortcut';
 import Scrabble from '../applications/Scrabble';
 import { IconName } from '../../assets/icons';
 import Credits from '../applications/Credits';
-import axios from 'axios';
 import Notepad from '../applications/Notepad';
+import FaceDetectApp from '../applications/Doom';
 
 export interface DesktopProps {}
 
@@ -48,7 +47,7 @@ const APPLICATIONS: {
         key: 'doom',
         name: 'Doom',
         shortcutIcon: 'doomIcon',
-        component: Doom,
+        component: FaceDetectApp,
     },
     scrabble: {
         key: 'scrabble',

@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import me from '../../assets/pictures/workingAtComputer.jpg';
-import meNow from '../../assets/pictures/currentme.jpg';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import getData from '../../api/getData';
+import sendData from '../../api/sendData';
+import background from '../../assets/pictures/backgroundRpg.jpg';
 
 export interface StudyRoomsProps {
     description: string;
@@ -15,6 +15,7 @@ export interface StudyRoomsProps {
 const StudyRooms: React.FC = () => {
     const [studyRooms, setStudyRooms] = useState<StudyRoomsProps[]>([]);
     const [displayMode, setDisplayMode] = useState<'old' | 'new'>('new');
+    const navigate = useNavigate();
 
     useEffect(() => {
         getData<StudyRoomsProps[]>('/api/v1/study-group/all').then((res) => {
@@ -22,101 +23,84 @@ const StudyRooms: React.FC = () => {
         });
     }, []);
 
-    return (
-        <div className="site-page-content" style={{ padding: 16 }}>
-            <h1 style={styles.contentHeader}>Welcome to Study Rooms</h1>
-            <button
-                onClick={() =>
-                    setDisplayMode(displayMode === 'new' ? 'old' : 'new')
+    const handleJoin = async (groupId: string) => {
+        try {
+            const res = await sendData<null>(
+                'post',
+                `/api/v1/study-group/${groupId}`,
+                {
+                    groupId,
                 }
-                style={{
-                    marginBottom: 20,
-                    padding: '8px 16px',
-                    cursor: 'pointer',
-                    borderRadius: 6,
-                    border: '1px solid #333',
-                    backgroundColor: '#fff',
-                }}
-            >
-                Switch to {displayMode === 'new' ? 'Old' : 'New'} View
-            </button>
+            );
+            alert('참여에 성공했습니다!');
+        } catch (err: any) {
+            alert(err.response?.data?.message || '참여 실패');
+            console.error(err);
+        }
+    };
+
+    return (
+        <div
+            style={{
+                backgroundImage: `url(${background})`,
+            }}
+            className={`min-h-screen bg-cover bg-center w-full  text-yellow-100 font-serif flex flex-col items-center p-8 overflow-y-auto`}
+        >
+            <h1 className="mb-8 text-5xl font-bold drop-shadow-[0_2px_2px_rgba(0,0,0,0.6)] tracking-wide border-b-4 border-yellow-300 pb-2">
+                🛡️ Welcome to the MetaStudy 🏰
+            </h1>
 
             <div
-                style={
-                    displayMode === 'new'
-                        ? styles.studyRoomContainerNew
-                        : styles.studyRoomContainerOld
-                }
+                className={`${'flex flex-col gap-6 space-between w-full max-w-3xl'}`}
             >
                 {studyRooms.map((room) => (
                     <div
                         key={room.groupId}
-                        style={
+                        className={`rounded-lg p-6 w-full flex justify-between ${
                             displayMode === 'new'
-                                ? styles.studyRoomCardNew
-                                : styles.studyRoomCardOld
-                        }
+                                ? 'bg-yellow-950 bg-opacity-70 shadow-2xl border border-yellow-700 mb-6'
+                                : 'border-b border-yellow-600 py-4'
+                        }`}
                     >
-                        <h3>{room.title}</h3>
-                        <p>
-                            <strong>Category:</strong> {room.groupCategory}
-                        </p>
-                        <p>
-                            <strong>Members:</strong> {room.memberCnt}
-                        </p>
-                        <p>{room.description}</p>
-                        <Link to={`/study/${room.groupId}`}>View Group</Link>
+                        <h3 className="text-2xl font-bold text-yellow-200 mb-2">
+                            📜 {room.title}
+                        </h3>
+                        <div className="flex flex-col">
+                            <p className="mb-1">
+                                <span className="font-semibold">
+                                    🗂️ Category:
+                                </span>{' '}
+                                {room.groupCategory}
+                            </p>
+                            <p className="mb-1">
+                                <span className="font-semibold">
+                                    👥 Members:
+                                </span>{' '}
+                                {room.memberCnt}
+                            </p>
+                            <p className="mb-4 italic">{room.description}</p>
+                        </div>
+                        <div className="ml-4 flex gap-4">
+                            <button
+                                onClick={() =>
+                                    navigate(`/study/${room.groupId}`)
+                                }
+                                className="bg-yellow-700 hover:bg-yellow-600 text-white px-4 py-2 rounded shadow-md transition duration-150"
+                            >
+                                Enter Guild 🏹
+                            </button>
+                            <button
+                                onClick={() => handleJoin(room.groupId)}
+                                className="bg-green-800 hover:bg-green-700 text-white px-4 py-2 rounded shadow-md transition duration-150 "
+                            >
+                                View Guild ⚔️
+                            </button>
+                        </div>
                     </div>
                 ))}
             </div>
         </div>
     );
-};
-
-const styles: Record<string, React.CSSProperties> = {
-    contentHeader: {
-        marginBottom: 16,
-        fontSize: 48,
-    },
-    image: {
-        height: 'auto',
-        width: '100%',
-    },
-    topImage: {
-        height: 'auto',
-        width: '100%',
-        marginBottom: 32,
-    },
-    verticalImage: {
-        alignSelf: 'center',
-        marginLeft: 32,
-        flex: 0.8,
-        alignItems: 'center',
-        textAlign: 'center',
-        flexDirection: 'column',
-        display: 'flex',
-    },
-    studyRoomContainerNew: {
-        display: 'flex',
-        flexDirection: 'column',
-        width: '100%',
-        gap: 24,
-        marginTop: 24,
-    },
-    studyRoomCardNew: {
-        borderRadius: 12,
-        padding: 16,
-        backgroundColor: '#f5f7fa',
-        boxShadow: '0 4px 10px rgba(0, 0, 0, 0.1)',
-    },
-    studyRoomContainerOld: {
-        display: 'block',
-        marginTop: 24,
-    },
-    studyRoomCardOld: {
-        borderBottom: '1px solid #ccc',
-        padding: '16px 0',
-    },
 };
 
 export default StudyRooms;

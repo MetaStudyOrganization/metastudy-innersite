@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import * as FcIcons from 'react-icons/fc';
 import { useForm } from 'react-hook-form';
-import { ApiResponse } from '../../types/globalType';
 import sendData from '../../api/sendData';
 import Desktop from '../os/Desktop';
 
@@ -24,7 +23,7 @@ const LoginScreen: React.FC = () => {
 
     const onSubmit = async (data: LoginForm) => {
         try {
-            const res: ApiResponse<null> = await sendData(
+            const res: null = await sendData(
                 'post',
                 '/api/v1/member/login',
                 data

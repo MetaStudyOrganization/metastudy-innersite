@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 body {
     margin: 0;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
@@ -7,7 +11,8 @@ body {
     /* -moz-osx-font-smoothing: grayscale; */
 }
 
-html, body {
+html,
+body {
     background-color: #fff;
 }
 
@@ -15,7 +20,6 @@ code {
     font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
         monospace;
 }
-
 
 /* 8px */
 @font-face {
@@ -37,7 +41,6 @@ code {
     font-family: Terminal;
     src: url(./assets/fonts/Terminal.ttf);
 }
-
 
 * {
     -webkit-touch-callout: none;
@@ -388,11 +391,11 @@ input:active {
 }
 
 .notyf-announcer {
-    opacity: 0!important;
+    opacity: 0 !important;
 }
 
 .notyf {
-    opacity: 0!important;
+    opacity: 0 !important;
 }
 
 .start-menu-option:hover {

@@ -1,10 +1,10 @@
 import './App.css';
-import Desktop from './components/os/Desktop';
+import LoginScreen from './components/applications/Login';
 
 function App() {
     return (
         <div className="App">
-            <Desktop />
+            <LoginScreen />
         </div>
     );
 }
